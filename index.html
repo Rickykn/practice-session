@@ -193,12 +193,12 @@
       };
 
       const sortByAge = () => {
-        let sort = document.getElementById("sort").value;
-        if (sort === "Ascending") {
+        let sortByAge = document.getElementById("sort").value;
+        if (sortByAge === "Ascending") {
           sortEmployeeDatabase.sort((a, b) => {
             return a.age - b.age;
           });
-        } else if (sort === "Descending") {
+        } else if (sortByAge === "Descending") {
           sortEmployeeDatabase.sort((a, b) => {
             return b.age - a.age;
           });
