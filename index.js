@@ -36,7 +36,7 @@ const ages = [3, 10, 18, 20];
 const duplicateFind = (arr, callback) => {
   let value;
   for (let i = 0; i < arr.length; i++) {
-    if (callback(arr[i])) {
+    if (callback(arr[i], i, arr)) {
       value = arr[i];
       break;
     }
