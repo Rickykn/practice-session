@@ -71,15 +71,15 @@
 
     <fieldset>
       <legend>Sort Employee</legend>
-      <label for="searchOccupation">Order</label>
-      <select id="searchOccupation">
-        <option value="">Ascending</option>
-        <option value="">Descending</option>
+      <label for="sort">Order</label>
+      <select id="sort">
+        <option value="Ascending">Ascending</option>
+        <option value="Descending">Descending</option>
       </select>
       <br />
       <br />
-      <button>Sort Employee By Name</button>
-      <button>Sort Employee By Age</button>
+      <button onclick="sortByName()">Sort Employee By Name</button>
+      <button onclick="sortByAge()">Sort Employee By Age</button>
       <button>Reset Sort</button>
     </fieldset>
 
@@ -175,6 +175,34 @@
         });
 
         renderData(filteredData);
+      };
+
+      const sortByName = () => {
+        let sort = document.getElementById("sort").value;
+        if (sort === "Ascending") {
+          employeeDatabase.sort((a, b) => {
+            return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? 1 : -1;
+          });
+        } else if (sort === "Descending") {
+          employeeDatabase.reverse((a, b) => {
+            return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? 1 : -1;
+          });
+        }
+        renderData(employeeDatabase);
+      };
+
+      const sortByAge = () => {
+        let sort = document.getElementById("sort").value;
+        if (sort === "Ascending") {
+          employeeDatabase.sort((a, b) => {
+            return a.age - b.age;
+          });
+        } else if (sort === "Descending") {
+          employeeDatabase.sort((a, b) => {
+            return b.age - a.age;
+          });
+        }
+        renderData(employeeDatabase);
       };
     </script>
   </body>
