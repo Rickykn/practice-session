@@ -185,7 +185,7 @@
             return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? 1 : -1;
           });
         } else if (sort === "Descending") {
-          sortEmployeeDatabase.reverse((a, b) => {
+          sortEmployeeDatabase.sort((a, b) => {
             return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? -1 : 1;
           });
         }
