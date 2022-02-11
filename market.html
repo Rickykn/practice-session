@@ -48,6 +48,12 @@
         CalCulateTotalPrice() {
           return this.price * this.quantity;
         }
+
+        decrementStock() {
+          this.stock -= this.quantity;
+          this.quantity = 0;
+          return;
+        }
       }
 
       let products = [
@@ -123,14 +129,14 @@
 
         products.forEach((val) => {
           totalPrice += val.CalCulateTotalPrice();
+          val.decrementStock();
         });
 
         document.getElementById(
           "totalprice"
         ).innerHTML = `Total Belanja anda: Rp.${totalPrice.toLocaleString()}`;
+        renderProduct();
       };
-
-      console.log(products);
     </script>
   </body>
 </html>
