@@ -8,17 +8,16 @@ console.log("-----IndexOf--------");
 const fruits = ["Banana", "Mango", "Orange", "Orange"];
 
 const duplicateIndexOf = (arr, input) => {
-  let indexResult;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === input) {
-      indexResult = i;
-      break;
+      return i;
     }
   }
-  return indexResult;
+
+  return -1;
 };
 
-const indexOf = duplicateIndexOf(fruits, "Orange");
+const indexOf = duplicateIndexOf(fruits, "Mango");
 
 console.log(indexOf);
 
@@ -34,19 +33,15 @@ console.log("-----FIND--------");
 const ages = [3, 10, 18, 20];
 
 const duplicateFind = (arr, callback) => {
-  let value;
   for (let i = 0; i < arr.length; i++) {
     if (callback(arr[i], i, arr)) {
-      value = arr[i];
-      break;
+      return arr[i];
     }
   }
-
-  return value;
 };
 
 const find = duplicateFind(ages, (val) => {
-  return val > 10;
+  return val > 30;
 });
 
 console.log(find);
