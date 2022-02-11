@@ -27,10 +27,12 @@
       <tbody id="dataTable"></tbody>
     </table>
     <center>
-      <button class="btn btn-success">Checkout</button>
+      <button onclick="showTotalPrice()" class="btn btn-success">
+        Checkout
+      </button>
       <br />
       <br />
-      <h3>Total Belanja anda: Rp. 100,000</h3>
+      <h3 id="totalprice">Total Belanja anda: Rp. 0</h3>
     </center>
 
     <script>
@@ -115,6 +117,20 @@
 
         renderProduct();
       };
+
+      const showTotalPrice = () => {
+        let totalPrice = 0;
+
+        products.forEach((val) => {
+          totalPrice += val.CalCulateTotalPrice();
+        });
+
+        document.getElementById(
+          "totalprice"
+        ).innerHTML = `Total Belanja anda: Rp.${totalPrice.toLocaleString()}`;
+      };
+
+      console.log(products);
     </script>
   </body>
 </html>
