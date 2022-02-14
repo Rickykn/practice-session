@@ -152,15 +152,23 @@
         let payment = document.getElementById("inputPayment").value;
         let totalPrice = showTotalPrice();
 
-        if (payment === totalPrice) {
-          alert("Terimakasih sudah membayar dengan uang pas");
-        } else if (payment > totalPrice) {
+        if (payment > totalPrice) {
           alert(
             `Kembalian anda sebesar Rp. ${(
               payment - totalPrice
             ).toLocaleString()}`
           );
+          products.forEach((val) => {
+            val.checkout();
+          });
+        } else if (payment == totalPrice) {
+          alert(`Terimakasih telah membayar dengan uang pas`);
+          products.forEach((val) => {
+            val.checkout();
+          });
         }
+
+        renderProduct();
       };
     </script>
   </body>
