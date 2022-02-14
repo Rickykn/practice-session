@@ -148,6 +148,7 @@
         `;
 
         document.getElementById("checkout").innerHTML = showCheckout;
+
         renderProduct();
       };
 
@@ -171,8 +172,6 @@
           products.forEach((val) => {
             val.checkout();
           });
-          clearInterval(timer);
-          document.getElementById("checkout").innerHTML = "";
         }
 
         renderProduct();
@@ -185,6 +184,7 @@
         timer = setInterval(() => {
           if (minutes == 0 && seconds == 1) {
             document.getElementById("timer").innerHTML = "00:00";
+            clearInterval(timer);
             document.getElementById("checkout").innerHTML = "";
           } else {
             seconds--;
