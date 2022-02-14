@@ -27,12 +27,12 @@
       <tbody id="dataTable"></tbody>
     </table>
     <center>
-      <button onclick="showTotalPrice()" class="btn btn-success">
+      <button onclick="renderCheckout()" class="btn btn-success">
         Checkout
       </button>
       <br />
       <br />
-      <h3 id="totalprice">Total Belanja anda: Rp. 0</h3>
+      <h3 id="checkout"></h3>
     </center>
 
     <script>
@@ -49,7 +49,7 @@
           return this.price * this.quantity;
         }
 
-        decrementStock() {
+        checkout() {
           this.stock -= this.quantity;
           this.quantity = 0;
           return;
@@ -60,13 +60,13 @@
         new Shirt(
           "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/444b6b8e6d40c8249766694731048fb0b5d22eca_xxl-1.jpg",
           "Premium Cotton T-Shirt",
-          379900,
+          200000,
           10
         ),
         new Shirt(
           "https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/large/fc7f1fa35236905d10b51f655c204eaa4c1bc92a_xxl-1.jpg",
           "Silk Blend Polo Shirt",
-          549900,
+          150000,
           10
         ),
       ];
@@ -129,13 +129,38 @@
 
         products.forEach((val) => {
           totalPrice += val.CalCulateTotalPrice();
-          val.decrementStock();
         });
 
-        document.getElementById(
-          "totalprice"
-        ).innerHTML = `Total Belanja anda: Rp.${totalPrice.toLocaleString()}`;
-        renderProduct();
+        return totalPrice;
+      };
+
+      const renderCheckout = () => {
+        let showCheckout = "";
+
+        showCheckout += `Total Belanja anda: Rp.${showTotalPrice().toLocaleString()}`;
+        showCheckout += `
+        <div class="input-group mb-3">
+          <input id="inputPayment" type="text" class="form-control" placeholder="Your Payment" aria-label="Your Payment" aria-describedby="payment">
+          <button onclick="userPayment()" class="btn btn-primary" type="button" id="payment">Payment</button>
+        </div>
+        `;
+
+        document.getElementById("checkout").innerHTML = showCheckout;
+      };
+
+      const userPayment = () => {
+        let payment = document.getElementById("inputPayment").value;
+        let totalPrice = showTotalPrice();
+
+        if (payment === totalPrice) {
+          alert("Terimakasih sudah membayar dengan uang pas");
+        } else if (payment > totalPrice) {
+          alert(
+            `Kembalian anda sebesar Rp. ${(
+              payment - totalPrice
+            ).toLocaleString()}`
+          );
+        }
       };
     </script>
   </body>
