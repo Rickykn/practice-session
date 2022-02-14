@@ -138,7 +138,7 @@
       const renderCheckout = () => {
         startInterval();
         let showCheckout = "";
-        showCheckout += `<h1 id="timer">01:00</h1>`;
+        showCheckout += `<h1 id="timer">02:00</h1>`;
         showCheckout += `Total Belanja anda: Rp.${showTotalPrice().toLocaleString()}`;
         showCheckout += `
         <div class="input-group mb-3">
@@ -178,7 +178,7 @@
       };
 
       const startInterval = () => {
-        minutes = 0;
+        minutes = 1;
         seconds = 60;
 
         timer = setInterval(() => {
