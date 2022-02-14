@@ -133,8 +133,10 @@
 
         return totalPrice;
       };
+      let timer;
 
       const renderCheckout = () => {
+        startInterval();
         let showCheckout = "";
 
         showCheckout += `Total Belanja anda: Rp.${showTotalPrice().toLocaleString()}`;
@@ -144,8 +146,10 @@
           <button onclick="userPayment()" class="btn btn-primary" type="button" id="payment">Payment</button>
         </div>
         `;
+        showCheckout += `<h1 id="timer">01:00</h1>`;
 
         document.getElementById("checkout").innerHTML = showCheckout;
+        renderProduct();
       };
 
       const userPayment = () => {
@@ -161,14 +165,47 @@
           products.forEach((val) => {
             val.checkout();
           });
+          clearInterval(timer);
+          document.getElementById("checkout").innerHTML = "";
         } else if (payment == totalPrice) {
           alert(`Terimakasih telah membayar dengan uang pas`);
           products.forEach((val) => {
             val.checkout();
           });
+          clearInterval(timer);
+          document.getElementById("checkout").innerHTML = "";
         }
 
         renderProduct();
+      };
+
+      const startInterval = () => {
+        minutes = 0;
+        seconds = 60;
+
+        timer = setInterval(() => {
+          if (minutes == 0 && seconds == 1) {
+            document.getElementById("timer").innerHTML = "00:00";
+            document.getElementById("checkout").innerHTML = "";
+          } else {
+            seconds--;
+            if (seconds == 0) {
+              minutes--;
+              seconds = 60;
+              if (minutes == 0) {
+                minutes = minutes;
+              }
+            }
+            if (seconds.toString().length == 1) {
+              seconds = "0" + seconds;
+            }
+            if (minutes.toString().length == 1) {
+              minutes = "0" + minutes;
+            }
+            document.getElementById("timer").innerHTML =
+              minutes + ":" + seconds;
+          }
+        }, 1000);
       };
     </script>
   </body>
