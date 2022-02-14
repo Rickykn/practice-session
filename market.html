@@ -172,6 +172,8 @@
           products.forEach((val) => {
             val.checkout();
           });
+          clearInterval(timer);
+          document.getElementById("checkout").innerHTML = "";
         }
 
         renderProduct();
