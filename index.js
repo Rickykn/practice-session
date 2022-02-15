@@ -38,10 +38,11 @@ const duplicateFind = (arr, callback) => {
       return arr[i];
     }
   }
+  return;
 };
 
 const find = duplicateFind(ages, (val) => {
-  return val > 30;
+  return val > 10;
 });
 
 console.log(find);
