@@ -133,9 +133,16 @@
 
         return totalPrice;
       };
+
       let timer;
 
       const renderCheckout = () => {
+        let totalPrice = showTotalPrice();
+
+        if (!totalPrice) {
+          alert("belum ada barang di cart");
+          return;
+        }
         startInterval();
         let showCheckout = "";
         showCheckout += `<h1 id="timer">02:00</h1>`;
